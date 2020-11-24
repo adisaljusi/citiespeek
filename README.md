@@ -7,8 +7,10 @@ As a school project I had to combine multiple APIs into one application. The ide
 ## Stack
 - React
 - TypeScript
+- Java SpringBoot
 
 ## APIs
 - Unsplash
 - MapBox 
 - here Destination Weather API
+- Selfmade API to store certain values in a DB

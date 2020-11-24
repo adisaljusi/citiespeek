@@ -2,15 +2,19 @@
 Cities Peek is a application that let's you view the temperature of cities with latitude and longitude
 
 ## Info
-As a school project I had to combine multiple APIs into one application. The idea is to select a point in a map and then get information about the weather and 
+As a school project I had to combine multiple APIs into one application. The idea is to select a point in a map and then get information about the weather and the location. It uses:
+- **Frontend:** React + Typescript with MaterialUI
+- **Backend:** Java Spring Boot REST
 
 ## Stack
 - React
 - TypeScript
 - Java SpringBoot
+- Postgres
+- Docker
 
 ## APIs
 - Unsplash
 - MapBox 
 - here Destination Weather API
-- Selfmade API to store certain values in a DB
+- Selfmade API to store certain values in a database

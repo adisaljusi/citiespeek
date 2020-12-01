@@ -1,9 +1,13 @@
 import React from 'react';
 import './App.css';
+import { CitiesPeekContainer } from './containers/CitiesPeekContainer';
 
-const App = () => (
-  <div className="App">
-  </div>
-);
+export const App = () => {
+  return (
+    <div className="App">
+      <CitiesPeekContainer />
+    </div>
+  );
+};
 
 export default App;

@@ -1,5 +1,3 @@
-import { env } from 'process';
-
 interface Environment {
   readonly mapboxConfig: {
     readonly API_KEY: string;
@@ -14,12 +12,12 @@ interface Environment {
 
 export const environment: Environment = {
   mapboxConfig: {
-    API_KEY: env.MAPBOX_API_KEY as string,
+    API_KEY: process.env.REACT_APP_MAPBOX_API_KEY as string,
     defaultLatitude: 0.0,
     defaultLongitude: 0.0
   },
   hereDestinationWeatherConfig: {
     URI: 'https://weather.ls.hereapi.com/weather/1.0/report.json?',
-    API_KEY: env.HERE_API_KEY as string
+    API_KEY: process.env.REACT_APP_HERE_API_KEY as string
   }
-}
+};

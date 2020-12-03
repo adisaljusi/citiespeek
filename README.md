@@ -1,8 +1,8 @@
 # Cities Peek
-Cities Peek is a application that let's you view the temperature of cities with latitude and longitude
+Cities Peek is a application that let's you view the temperature of location with latitude and longitude
 
 ## Info
-As a school project I had to combine multiple APIs into one application. The idea is to select a point in a map and then get information about the weather and the location. It uses:
+As a school project I had to combine multiple APIs into one application. The idea is to select a location on a map and then display information about the weather and the location. It uses:
 - **Frontend:** React + Typescript with MaterialUI
 - **Backend:** Java Spring Boot REST
 

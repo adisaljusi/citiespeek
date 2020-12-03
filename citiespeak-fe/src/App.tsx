@@ -1,4 +1,3 @@
-import { ThemeProvider } from '@material-ui/core';
 import React from 'react';
 import './App.css';
 import { CitiesPeekContainer } from './containers/CitiesPeekContainer';

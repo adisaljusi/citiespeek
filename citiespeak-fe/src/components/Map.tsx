@@ -17,17 +17,17 @@ export const Map = () => {
       container: mapContainer.current as HTMLElement | string,
       style: "mapbox://styles/mapbox/light-v10", // stylesheet location
       center: [-122.44847954400961,  37.75101898886977],
-      zoom: 5
+      zoom: 12
     })
 
     if (map) {
       map.on("load", () => {
         setMap(map);
-        // map.addControl('')
+        map.addControl(new mapboxgl.NavigationControl());
         map.resize();
       });
     }
-  }, []);
+  }, [map]);
 
 
   return (

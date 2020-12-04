@@ -19,8 +19,11 @@ const useStyles = makeStyles((theme: Theme) =>
       zIndex: theme.zIndex.drawer + 1,
     },
     content: {
-      flexGrow: 1
-    }
+      flexGrow: 1,
+      display: 'flex',
+      marginTop: 64,
+      height: 'calc(100% - 64px)'
+    },
   }),
 );
 
@@ -40,13 +43,10 @@ export const CitiesPeekContainer = () => {
         </AppBar>
         <SideDrawer />
         <div className={classes.content}>
-          <Toolbar />
           <div>
-            <div>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti architecto repudiandae vel non rerum accusamus sit autem, doloremque voluptas tempore corporis mollitia maxime nihil dignissimos deleniti explicabo consectetur aspernatur hic!</p>
-            </div>
-            <Map />
+            skdfjkllsdaj
           </div>
+          <Map />
         </div>
       </div>
     </>

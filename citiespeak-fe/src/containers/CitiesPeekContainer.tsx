@@ -1,37 +1,27 @@
-import React from 'react';
-import { Map } from '../components/Map';
 import {
   AppBar,
-  Toolbar,
-  Typography,
   createStyles,
-  makeStyles,
-  Theme,
-  Drawer,
-  List,
-  ListItem,
-  ListItemIcon,
-  Divider
+  CssBaseline, makeStyles,
+  Theme, Toolbar,
+  Typography
 } from '@material-ui/core';
-
-import ExploreIcon from '@material-ui/icons/Explore';
-import ViewListIcon from '@material-ui/icons/ViewList';
+import React from 'react';
+import { Map } from '../components/Map';
+import { SideDrawer } from '../components/SideDrawer';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    appBar: {
-      flexGrow: 1,
-    },
-    title: {
-      flexGrow: 1,
-    },
-    main: {
+    root: {
       display: 'flex',
+      height: '100%'
     },
-    drawer: {
-      marginTop: '64px'
+    appBar: {
+      zIndex: theme.zIndex.drawer + 1,
+    },
+    content: {
+      flexGrow: 1
     }
-  })
+  }),
 );
 
 export const CitiesPeekContainer = () => {
@@ -39,35 +29,26 @@ export const CitiesPeekContainer = () => {
 
   return (
     <>
-      <div className={classes.appBar}>
-        <AppBar position="static" color="default">
+      <div className={classes.root}>
+        <CssBaseline />
+        <AppBar position="fixed" color="default" className={classes.appBar}>
           <Toolbar>
-            <Typography variant="h6" className={classes.title}>
+            <Typography variant="h6">
               CitiesPeek
-          </Typography>
+            </Typography>
           </Toolbar>
         </AppBar>
-      </div>
-      <Drawer
-        variant="permanent"
-        className={classes.drawer}>
-        <List>
-          <ListItem button>
-            <ListItemIcon><ExploreIcon /></ListItemIcon>
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon><ViewListIcon /></ListItemIcon>
-          </ListItem>
-        </List>
-        <Divider />
-      </Drawer>
-      <div className={classes.main}>
-        <div>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti architecto repudiandae vel non rerum accusamus sit autem, doloremque voluptas tempore corporis mollitia maxime nihil dignissimos deleniti explicabo consectetur aspernatur hic!</p>
+        <SideDrawer />
+        <div className={classes.content}>
+          <Toolbar />
+          <div>
+            <div>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti architecto repudiandae vel non rerum accusamus sit autem, doloremque voluptas tempore corporis mollitia maxime nihil dignissimos deleniti explicabo consectetur aspernatur hic!</p>
+            </div>
+            <Map />
+          </div>
         </div>
-        <Map />
       </div>
-
     </>
   );
 }

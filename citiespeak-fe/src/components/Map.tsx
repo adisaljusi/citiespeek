@@ -4,7 +4,6 @@ import { environment } from '../environment/environment';
 
 const styles = {
   width: "100%",
-  height: "calc(100% - 64px)"
 };
 
 export const Map = () => {
@@ -13,21 +12,22 @@ export const Map = () => {
 
   useEffect(() => {
     mapboxgl.accessToken = environment.mapboxConfig.API_KEY;
-    new mapboxgl.Map({
+    const newMap = new mapboxgl.Map({
       container: mapContainer.current as HTMLElement | string,
       style: "mapbox://styles/mapbox/light-v10", // stylesheet location
-      center: [-122.44847954400961,  37.75101898886977],
+      center: [-122.44847954400961, 37.75101898886977],
       zoom: 12
-    })
+    });
+    newMap.addControl(new mapboxgl.NavigationControl()); 
+
+    setMap(newMap);
 
     if (map) {
       map.on("load", () => {
-        setMap(map);
-        map.addControl(new mapboxgl.NavigationControl());
         map.resize();
       });
     }
-  }, [map]);
+  }, []);
 
 
   return (

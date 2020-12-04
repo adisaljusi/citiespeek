@@ -6,6 +6,7 @@ import {
   Typography
 } from '@material-ui/core';
 import React from 'react';
+import { LocationView } from '../components/LocationView';
 import { Map } from '../components/Map';
 import { SideDrawer } from '../components/SideDrawer';
 
@@ -43,9 +44,7 @@ export const CitiesPeekContainer = () => {
         </AppBar>
         <SideDrawer />
         <div className={classes.content}>
-          <div>
-            skdfjkllsdaj
-          </div>
+          <LocationView />
           <Map />
         </div>
       </div>

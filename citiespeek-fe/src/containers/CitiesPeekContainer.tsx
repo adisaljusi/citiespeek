@@ -5,10 +5,12 @@ import {
   Theme, Toolbar,
   Typography
 } from '@material-ui/core';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { LocationView } from '../components/LocationView';
 import { Map } from '../components/Map';
 import { SideDrawer } from '../components/SideDrawer';
+import { searchImage } from '../helpers/unsplash.helper';
+import { Image } from '../models/model';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -30,7 +32,15 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export const CitiesPeekContainer = () => {
   const classes = useStyles();
-  const imageSrc = 'https://images.unsplash.com/photo-1517771355228-88102bee3f4a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2567&q=80';
+  const [image, setImage] = useState<Image | null>(null);
+
+  useEffect(() => {
+    const searchImageAsync = async () => {
+      const imageSrc = await searchImage('san francisco');
+      setImage(imageSrc);
+    }
+    searchImageAsync();
+  });
 
   return (
     <>
@@ -45,7 +55,7 @@ export const CitiesPeekContainer = () => {
         </AppBar>
         <SideDrawer />
         <div className={classes.content}>
-          <LocationView imageSrc={imageSrc} open={true}/>
+          <LocationView image={image} open={true} />
           <Map />
         </div>
       </div>

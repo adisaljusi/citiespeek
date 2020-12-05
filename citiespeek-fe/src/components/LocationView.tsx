@@ -1,5 +1,6 @@
 import React from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core';
+import { Image } from '../models/model';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -20,16 +21,20 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 interface Props {
-  readonly imageSrc: string;
+  readonly image: Image | null;
   readonly open: boolean;
 }
 
-export const LocationView: React.FC<Props> = ({ imageSrc, open }) => {
+export const LocationView: React.FC<Props> = ({ image, open }) => {
   const classes = useStyles();
 
   return (
     <div className={!open ? classes.closed : classes.root}>
-      <img className={classes.image} src={imageSrc} />
+      {
+        image != null
+          ? <img className={classes.image} src={image.src} alt={image.alt} />
+          : <div className={classes.image}>No image found</div>
+      }
     </div>
   )
 };

@@ -9,6 +9,7 @@ import {
   ListItem,
   ListItemIcon,
   Divider,
+  Tooltip,
 } from '@material-ui/core';
 
 import ExploreIcon from '@material-ui/icons/Explore';
@@ -38,12 +39,16 @@ export const SideDrawer = () => {
       }}>
       <Toolbar />
       <List>
-        <ListItem button>
-          <ListItemIcon><ExploreIcon /></ListItemIcon>
-        </ListItem>
-        <ListItem button>
-          <ListItemIcon><ViewListIcon /></ListItemIcon>
-        </ListItem>
+        <Tooltip title="Map">
+          <ListItem button>
+            <ListItemIcon><ExploreIcon /></ListItemIcon>
+          </ListItem>
+        </Tooltip>
+        <Tooltip title="Saved Locations">
+          <ListItem button>
+            <ListItemIcon><ViewListIcon /></ListItemIcon>
+          </ListItem>
+        </Tooltip>
       </List>
       <Divider />
     </Drawer>);

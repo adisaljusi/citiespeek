@@ -1,7 +1,8 @@
 import React from 'react';
-import { createStyles, IconButton, makeStyles, Paper, Theme } from '@material-ui/core';
+import { createStyles, IconButton, makeStyles, Paper, Theme, Tooltip } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 import { Image, Location } from '../models/model';
+import InfoIcon from '@material-ui/icons/Info';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -67,7 +68,12 @@ export const LocationView: React.FC<Props> = ({ image, open, location }) => {
         }
       </div>
       <Paper elevation={7} className={classes.location}>
-        <h3>{location.city} </h3>
+        <div>
+          <h3>{location.city} </h3>
+          <Tooltip title="Location may be wrong">
+            <InfoIcon />
+          </Tooltip>
+        </div>
         <h3>{location.country}</h3>
         <span>{location.lngLat.latitude}, {location.lngLat.longitude}</span>
       </Paper>

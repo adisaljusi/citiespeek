@@ -1,5 +1,6 @@
 import React from 'react';
-import { createStyles, makeStyles, Paper, Theme } from '@material-ui/core';
+import { createStyles, IconButton, makeStyles, Paper, Theme } from '@material-ui/core';
+import CloseIcon from '@material-ui/icons/Close';
 import { Image, Location } from '../models/model';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -31,7 +32,16 @@ const useStyles = makeStyles((theme: Theme) =>
       width: 0
     },
     location: {
+      marginTop: -5,
       background: 'rgba(0, 0, 0, 0.01)'
+    },
+    imageContainer: {
+      display: 'flex',
+      justifyContent: 'flex-end'
+    },
+    imageButton: {
+      position: 'absolute',
+      background: '#FFF'
     }
   }),
 );
@@ -46,12 +56,17 @@ export const LocationView: React.FC<Props> = ({ image, open, location }) => {
 
   return (
     <div className={!open ? classes.closed : classes.root}>
-      {
-        image != null
-          ? <img className={classes.image} src={image.src} alt={image.alt} />
-          : <div className={classes.noImage}><span className={classes.noImageText}>No image found</span></div>
-      }
-      <Paper elevation={10} className={classes.location}>
+      <div className={classes.imageContainer}>
+        <IconButton className={classes.imageButton}>
+          <CloseIcon />
+        </IconButton>
+        {
+          image != null
+            ? <img className={classes.image} src={image.src} alt={image.alt} />
+            : <div className={classes.noImage}><span className={classes.noImageText}>No image found</span></div>
+        }
+      </div>
+      <Paper elevation={7} className={classes.location}>
         <h3>{location.city} </h3>
         <h3>{location.country}</h3>
         <span>{location.lngLat.latitude}, {location.lngLat.longitude}</span>

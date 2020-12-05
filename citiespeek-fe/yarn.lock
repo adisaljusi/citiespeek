@@ -1414,7 +1414,7 @@
   resolved "https://registry.yarnpkg.com/@mapbox/jsonlint-lines-primitives/-/jsonlint-lines-primitives-2.0.2.tgz"
   integrity sha1-zlblOfg1UrWNENZy6k1vya3HsjQ=
 
-"@mapbox/mapbox-gl-geocoder@^4.7.0":
+"@mapbox/mapbox-gl-geocoder@4.7.0", "@mapbox/mapbox-gl-geocoder@^4.7.0":
   version "4.7.0"
   resolved "https://registry.yarnpkg.com/@mapbox/mapbox-gl-geocoder/-/mapbox-gl-geocoder-4.7.0.tgz"
   integrity sha512-Fy4jlWWCQt2jKsQ7Agt2nDF1bEY9easOBJVE+yXdpC2D/y/FPnXEQkj9ryhZL05j1iQVOIyU87pM3GI3ETmOVA==
@@ -9771,6 +9771,15 @@ react-is@^17.0.1:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.1.tgz"
   integrity sha512-NAnt2iGDXohE5LI7uBnLnqvLQMtzhkiAOLXTmv+qnF9Ky7xAPcX8Up/xWIhxvLVGJvuLiNc4xQLtuqDRzb4fSA==
 
+react-map-gl-geocoder@^2.1.6:
+  version "2.1.6"
+  resolved "https://registry.yarnpkg.com/react-map-gl-geocoder/-/react-map-gl-geocoder-2.1.6.tgz#8c306ba6e4a4d1465fef7281029f6488f7f54d8a"
+  integrity sha512-0JQ4bQWpUO420WZik1zQ+iPSq+lVMBO0ARQGeLf5VRvSf7gXZxM0jwexDVtLxZV7+QWwVPJg6Brzzwf6oCh9sg==
+  dependencies:
+    "@mapbox/mapbox-gl-geocoder" "4.7.0"
+    prop-types "^15.7.2"
+    viewport-mercator-project "6.1.1"
+
 react-map-gl@^5.2.10:
   version "5.2.10"
   resolved "https://registry.yarnpkg.com/react-map-gl/-/react-map-gl-5.2.10.tgz"
@@ -11838,6 +11847,14 @@ vfile-location@^3.2.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/vfile-location/-/vfile-location-3.2.0.tgz"
   integrity sha512-aLEIZKv/oxuCDZ8lkJGhuhztf/BW4M+iHdCwglA/eWc+vtuRFJj8EtgceYFX4LRjOhCAAiNHsKGssC6onJ+jbA==
+
+viewport-mercator-project@6.1.1:
+  version "6.1.1"
+  resolved "https://registry.yarnpkg.com/viewport-mercator-project/-/viewport-mercator-project-6.1.1.tgz#d7b2cb3cb772b819f1daab17cf4019102a9102a6"
+  integrity sha512-nI0GEmXnESwZxWSJuaQkdCnvOv6yckUfqqFbNB8KWVbQY3eUExVM4ZziqCVVs5mNznLjDF1auj6HLW5D5DKcng==
+  dependencies:
+    "@babel/runtime" "^7.0.0"
+    gl-matrix "^3.0.0"
 
 "viewport-mercator-project@^6.2.3 || ^7.0.1":
   version "7.0.1"

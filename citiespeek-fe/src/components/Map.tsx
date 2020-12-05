@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
 import ReactMapGL, { InteractiveMap, ViewportProps } from 'react-map-gl';
+import Geocoder from 'react-map-gl-geocoder';
 import { environment } from '../environment/environment';
 
 export const Map = () => {
@@ -19,7 +20,11 @@ export const Map = () => {
       width={'100%'}
       height={'100%'}
     >
- 
+      <Geocoder
+        mapRef={mapRef}
+        mapboxApiAccessToken={environment.mapboxConfig.API_KEY}
+        position="top-left"
+      />
     </ReactMapGL>
   );
 }

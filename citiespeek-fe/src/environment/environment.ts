@@ -8,6 +8,10 @@ interface Environment {
     readonly URI: string;
     readonly API_KEY: string;
   };
+  readonly unsplashConfig: {
+    readonly URI: string;
+    readonly ACCESS_KEY: string;
+  }
 }
 
 export const environment: Environment = {
@@ -19,5 +23,9 @@ export const environment: Environment = {
   hereDestinationWeatherConfig: {
     URI: 'https://weather.ls.hereapi.com/weather/1.0/report.json?',
     API_KEY: process.env.REACT_APP_HERE_API_KEY as string
+  },
+  unsplashConfig: {
+    URI: 'https://api.unsplash.com',
+    ACCESS_KEY: process.env.REACT_APP_UNSPLASH_ACCESS_KEY as string
   }
 };

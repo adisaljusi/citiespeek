@@ -16,6 +16,15 @@ export const Map = () => {
 
   const handleViewportChange = useCallback((viewport: Partial<ViewportProps>) => setViewport(viewport), []);
 
+  const handleViewportChangeGeocoder = useCallback((viewport: Partial<ViewportProps>) => {
+    setViewport(viewport);
+    const { longitude, latitude } = viewport;
+
+    if (longitude && latitude) {
+      setMarker({ longitude, latitude });
+    }
+  }, []);
+
   const handleMapOnClick = (event: PointerEvent) => {
     event.preventDefault();
     const [longitude, latitude] = event.lngLat;
@@ -35,8 +44,9 @@ export const Map = () => {
       <Geocoder
         mapRef={mapRef}
         mapboxApiAccessToken={environment.mapboxConfig.API_KEY}
-        onViewportChange={handleViewportChange}
+        onViewportChange={handleViewportChangeGeocoder}
         position="top-right"
+        marker={false}
       />
       {
         marker != null && (

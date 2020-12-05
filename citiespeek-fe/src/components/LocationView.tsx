@@ -1,6 +1,6 @@
 import React from 'react';
-import { createStyles, makeStyles, Theme } from '@material-ui/core';
-import { Image } from '../models/model';
+import { createStyles, makeStyles, Paper, Theme } from '@material-ui/core';
+import { Image, Location } from '../models/model';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -25,19 +25,23 @@ const useStyles = makeStyles((theme: Theme) =>
       display: 'table-cell',
       verticalAlign: 'middle',
       textAlign: 'center',
-      fontSize:  '1.5em'
+      fontSize: '1.5em'
     },
     closed: {
       width: 0
+    },
+    location: {
+      background: 'rgba(0, 0, 0, 0.01)'
     }
   }),
 );
 interface Props {
   readonly image: Image | null;
   readonly open: boolean;
+  readonly location: Location;
 }
 
-export const LocationView: React.FC<Props> = ({ image, open }) => {
+export const LocationView: React.FC<Props> = ({ image, open, location }) => {
   const classes = useStyles();
 
   return (
@@ -47,6 +51,11 @@ export const LocationView: React.FC<Props> = ({ image, open }) => {
           ? <img className={classes.image} src={image.src} alt={image.alt} />
           : <div className={classes.noImage}><span className={classes.noImageText}>No image found</span></div>
       }
+      <Paper elevation={10} className={classes.location}>
+        <h3>{location.city} </h3>
+        <h3>{location.country}</h3>
+        <span>{location.lngLat.latitude}, {location.lngLat.longitude}</span>
+      </Paper>
     </div>
   )
 };

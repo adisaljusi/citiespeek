@@ -10,7 +10,7 @@ import { LocationView } from '../components/LocationView';
 import { Map } from '../components/Map';
 import { SideDrawer } from '../components/SideDrawer';
 import { searchImage } from '../helpers/unsplash.helper';
-import { Image } from '../models/model';
+import { Image, Location } from '../models/model';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -33,6 +33,14 @@ const useStyles = makeStyles((theme: Theme) =>
 export const CitiesPeekContainer = () => {
   const classes = useStyles();
   const [image, setImage] = useState<Image | null>(null);
+  const location: Location = {
+    city: 'San Francisco',
+    country: 'United States of America',
+    lngLat: {
+      longitude: 0.00,
+      latitude: 0.00
+    }
+  };
 
   useEffect(() => {
     const searchImageAsync = async () => {
@@ -55,7 +63,7 @@ export const CitiesPeekContainer = () => {
         </AppBar>
         <SideDrawer />
         <div className={classes.content}>
-          <LocationView image={image} open={true} />
+          <LocationView image={image} open={true} location={location} />
           <Map />
         </div>
       </div>

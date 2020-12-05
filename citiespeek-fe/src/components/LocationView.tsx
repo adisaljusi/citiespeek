@@ -15,6 +15,18 @@ const useStyles = makeStyles((theme: Theme) =>
       height: '20%',
       width: '100%'
     },
+    noImage: {
+      height: '20%',
+      width: '100%',
+      display: 'table',
+      background: 'rgba(0, 0, 0, 0.05)'
+    },
+    noImageText: {
+      display: 'table-cell',
+      verticalAlign: 'middle',
+      textAlign: 'center',
+      fontSize:  '1.5em'
+    },
     closed: {
       width: 0
     }
@@ -33,7 +45,7 @@ export const LocationView: React.FC<Props> = ({ image, open }) => {
       {
         image != null
           ? <img className={classes.image} src={image.src} alt={image.alt} />
-          : <div className={classes.image}>No image found</div>
+          : <div className={classes.noImage}><span className={classes.noImageText}>No image found</span></div>
       }
     </div>
   )

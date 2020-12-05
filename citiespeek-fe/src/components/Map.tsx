@@ -1,5 +1,5 @@
 import React, { useCallback, useRef, useState } from 'react';
-import { InteractiveMap, Marker, MarkerProps, PointerEvent, ViewportProps } from 'react-map-gl';
+import { ExtraState, InteractiveMap, Marker, MarkerProps, PointerEvent, ViewportProps } from 'react-map-gl';
 import Geocoder from 'react-map-gl-geocoder';
 import { environment } from '../environment/environment';
 import './map.css';
@@ -30,7 +30,8 @@ export const Map = () => {
       onViewportChange={handleViewportChange}
       width={'100%'}
       height={'100%'}
-      onClick={handleMapOnClick}>
+      onClick={handleMapOnClick}
+    >
       <Geocoder
         mapRef={mapRef}
         mapboxApiAccessToken={environment.mapboxConfig.API_KEY}
@@ -41,7 +42,7 @@ export const Map = () => {
         marker != null && (
           <Marker {...marker}>
             <div className="markerImageWrapper">
-              <img className="markerImage" src={markerImage} />
+              <img className="markerImage" src={markerImage} alt="marker" />
             </div>
           </Marker>
         )

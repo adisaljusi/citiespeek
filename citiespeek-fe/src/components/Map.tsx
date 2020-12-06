@@ -1,3 +1,4 @@
+import { LngLat } from 'mapbox-gl';
 import React, { useCallback, useRef, useState } from 'react';
 import { InteractiveMap, Marker, MarkerProps, PointerEvent, ViewportProps } from 'react-map-gl';
 import Geocoder from 'react-map-gl-geocoder';
@@ -5,7 +6,11 @@ import { environment } from '../environment/environment';
 import '../styles/Map.css';
 import markerImage from './marker.svg';
 
-export const Map = () => {
+interface Props {
+  readonly findLocation: (lngLat: LngLat) => void;
+}
+
+export const Map: React.FC<Props> = ({ findLocation: handleOnMapClick }) => {
   const mapRef = useRef<InteractiveMap>(null);
   const [viewport, setViewport] = useState({
     latitude: 37.7510189888697,
@@ -29,6 +34,7 @@ export const Map = () => {
     event.preventDefault();
     const [longitude, latitude] = event.lngLat;
     setMarker({ longitude, latitude });
+    handleOnMapClick(new LngLat( longitude, latitude));
   }
 
   return (

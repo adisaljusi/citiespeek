@@ -4,6 +4,7 @@ import {
   Toolbar,
   Typography
 } from '@material-ui/core';
+import { LngLat } from 'mapbox-gl';
 import React, { useEffect, useState } from 'react';
 import { LocationView } from '../components/LocationView';
 import { Map } from '../components/Map';
@@ -16,14 +17,7 @@ import { citiesPeekContainerStyles } from '../styles/styles';
 export const CitiesPeekContainer = () => {
   const classes = citiesPeekContainerStyles();
   const [image, setImage] = useState<Image | null>(null);
-  const location: Location = {
-    city: 'San Francisco',
-    country: 'United States of America',
-    lngLat: {
-      longitude: 0.00,
-      latitude: 0.00
-    }
-  };
+  const [location, setLocation] = useState<Location | null>(null);
 
   useEffect(() => {
     // const searchImageAsync = async () => {
@@ -32,6 +26,14 @@ export const CitiesPeekContainer = () => {
     // }
     // searchImageAsync();
   });
+
+  const findLocation = (lngLat: LngLat) => {
+    setLocation({
+      city:  'San Francisco',
+      country: 'United States of America',
+      lngLat
+    });
+  }
 
   return (
     <>
@@ -47,7 +49,7 @@ export const CitiesPeekContainer = () => {
         <SideDrawer />
         <div className={classes.content}>
           <LocationView image={image} open={true} location={location} />
-          <Map />
+          <Map findLocation={findLocation}/>
         </div>
       </div>
     </>

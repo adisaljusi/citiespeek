@@ -7,7 +7,7 @@ import { locationViewStyles } from '../styles/styles';
 interface Props {
   readonly image: Image | null;
   readonly open: boolean;
-  readonly location: Location;
+  readonly location: Location | null;
 }
 
 export const LocationView: React.FC<Props> = ({ image, open, location }) => {
@@ -25,16 +25,20 @@ export const LocationView: React.FC<Props> = ({ image, open, location }) => {
             : <div className={c.noImage}><span className={c.noImageText}>No image found</span></div>
         }
       </div>
-      <Paper elevation={7} className={c.location}>
-        <div>
-          <h3>{location.city} </h3>
-          <Tooltip title="Location may be wrong">
-            <InfoIcon />
-          </Tooltip>
-        </div>
-        <h3>{location.country}</h3>
-        <span>{location.lngLat.latitude}, {location.lngLat.longitude}</span>
-      </Paper>
+      {
+        location && (
+          <Paper elevation={7} className={c.location}>
+            <div>
+              <h3>{location.city} </h3>
+              <Tooltip title="Location and weather information might differ">
+                <InfoIcon />
+              </Tooltip>
+            </div>
+            <h3>{location.country}</h3>
+            <span>Lat: {location.lngLat.lat.toFixed(4)}, Long: {location.lngLat.lng.toFixed(4)}</span>
+          </Paper>
+        )
+      }
     </div>
   )
 };

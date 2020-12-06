@@ -1,21 +1,36 @@
 package ch.adisaljusi.citiespeekapi.Controllers;
 
+import ch.adisaljusi.citiespeekapi.Domain.Location;
+import ch.adisaljusi.citiespeekapi.Services.LocationService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 @RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 public class LocationController {
+  private final LocationService locationService;
+
+  public LocationController(LocationService locationService) {
+    this.locationService = locationService;
+  }
 
   @GetMapping("/location")
-  public void getLocations() {
+  public List<Location> getLocations() {
+    return locationService.getLocations();
+  }
+
+  @GetMapping("/location/{id}")
+  public Optional<Location> getLocation(@PathVariable String id) {
+    return locationService.getLocation(UUID.fromString(id));
   }
 
   @PostMapping("/location")
-  public void insertLocation() {
-
+  public void insertLocation(@RequestBody Location location) {
+    locationService.insertLocation(location);
   }
 }

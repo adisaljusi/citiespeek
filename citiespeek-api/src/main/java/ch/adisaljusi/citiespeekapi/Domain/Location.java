@@ -1,4 +1,4 @@
-package ch.adisaljusi.citiespeekapi.Model;
+package ch.adisaljusi.citiespeekapi.Domain;
 
 
 import lombok.Data;

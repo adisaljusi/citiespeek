@@ -2,7 +2,7 @@ import React, { useCallback, useRef, useState } from 'react';
 import { InteractiveMap, Marker, MarkerProps, PointerEvent, ViewportProps } from 'react-map-gl';
 import Geocoder from 'react-map-gl-geocoder';
 import { environment } from '../environment/environment';
-import './map.css';
+import '../styles/Map.css';
 import markerImage from './marker.svg';
 
 export const Map = () => {

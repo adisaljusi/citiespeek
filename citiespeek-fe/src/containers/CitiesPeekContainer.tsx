@@ -1,8 +1,7 @@
 import {
   AppBar,
-  createStyles,
-  CssBaseline, makeStyles,
-  Theme, Toolbar,
+  CssBaseline,
+  Toolbar,
   Typography
 } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
@@ -11,27 +10,11 @@ import { Map } from '../components/Map';
 import { SideDrawer } from '../components/SideDrawer';
 import { searchImage } from '../helpers/unsplash.helper';
 import { Image, Location } from '../models/model';
+import { citiesPeekContainerStyles } from '../styles/styles';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      display: 'flex',
-      height: '100%'
-    },
-    appBar: {
-      zIndex: theme.zIndex.drawer + 1,
-    },
-    content: {
-      flexGrow: 1,
-      display: 'flex',
-      marginTop: 64,
-      height: 'calc(100% - 64px)'
-    },
-  }),
-);
 
 export const CitiesPeekContainer = () => {
-  const classes = useStyles();
+  const classes = citiesPeekContainerStyles();
   const [image, setImage] = useState<Image | null>(null);
   const location: Location = {
     city: 'San Francisco',
@@ -43,11 +26,11 @@ export const CitiesPeekContainer = () => {
   };
 
   useEffect(() => {
-    const searchImageAsync = async () => {
-      const imageSrc = await searchImage('san francisco');
-      setImage(imageSrc);
-    }
-    searchImageAsync();
+    // const searchImageAsync = async () => {
+    //   const imageSrc = await searchImage('san francisco');
+    //   setImage(imageSrc);
+    // }
+    // searchImageAsync();
   });
 
   return (

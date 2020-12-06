@@ -1,41 +1,23 @@
-import React from 'react';
 import {
-  Toolbar,
-  createStyles,
-  makeStyles,
-  Theme,
-  Drawer,
+  Divider, Drawer,
   List,
   ListItem,
-  ListItemIcon,
-  Divider,
-  Tooltip,
+  ListItemIcon, Toolbar,
+  Tooltip
 } from '@material-ui/core';
-
 import ExploreIcon from '@material-ui/icons/Explore';
 import ViewListIcon from '@material-ui/icons/ViewList';
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    drawer: {
-      width: 60,
-      flexShrink: 0,
-    },
-    drawerPaper: {
-      width: 60,
-      overflow: 'hidden'
-    }
-  }),
-);
+import React from 'react';
+import { sideDrawerStyles } from '../styles/styles';
 
 export const SideDrawer = () => {
-  const classes = useStyles();
+  const c = sideDrawerStyles();
   return (
     <Drawer
       variant="permanent"
-      className={classes.drawer}
+      className={c.drawer}
       classes={{
-        paper: classes.drawerPaper
+        paper: c.drawerPaper
       }}>
       <Toolbar />
       <List>
@@ -53,4 +35,3 @@ export const SideDrawer = () => {
       <Divider />
     </Drawer>);
 }
-

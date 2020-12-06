@@ -13,7 +13,7 @@ export const sideDrawerStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export const locationViewStyles = makeStyles((theme: Theme) =>
+export const locationStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       width: '30%',

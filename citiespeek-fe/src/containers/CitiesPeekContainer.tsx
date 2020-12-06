@@ -18,22 +18,26 @@ export const CitiesPeekContainer = () => {
   const classes = citiesPeekContainerStyles();
   const [image, setImage] = useState<Image | null>(null);
   const [location, setLocation] = useState<Location | null>(null);
+  const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
 
-  useEffect(() => {
-    // const searchImageAsync = async () => {
-    //   const imageSrc = await searchImage('san francisco');
-    //   setImage(imageSrc);
-    // }
-    // searchImageAsync();
-  });
+  // useEffect(() => {
+  //   // const searchImageAsync = async () => {
+  //   //   const imageSrc = await searchImage('san francisco');
+  //   //   setImage(imageSrc);
+  //   // }
+  //   // searchImageAsync();
+  // });
 
   const findLocation = (lngLat: LngLat) => {
+    setSidebarIsOpen(true);
     setLocation({
-      city:  'San Francisco',
+      city: 'San Francisco',
       country: 'United States of America',
       lngLat
     });
   }
+
+  const hideSidebar = () => setSidebarIsOpen(false);
 
   return (
     <>
@@ -48,8 +52,12 @@ export const CitiesPeekContainer = () => {
         </AppBar>
         <SideDrawer />
         <div className={classes.content}>
-          <LocationView image={image} open={true} location={location} />
-          <Map findLocation={findLocation}/>
+          <LocationView
+            image={image}
+            open={sidebarIsOpen}
+            location={location}
+            hideSidebar={hideSidebar}/>
+          <Map findLocation={findLocation} />
         </div>
       </div>
     </>

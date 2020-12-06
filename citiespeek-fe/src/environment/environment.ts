@@ -21,7 +21,7 @@ export const environment: Environment = {
     defaultLongitude: 0.0
   },
   hereDestinationWeatherConfig: {
-    URI: 'https://weather.ls.hereapi.com/weather/1.0/report.json?',
+    URI: 'https://weather.ls.hereapi.com/weather/1.0/report.json',
     API_KEY: process.env.REACT_APP_HERE_API_KEY as string
   },
   unsplashConfig: {

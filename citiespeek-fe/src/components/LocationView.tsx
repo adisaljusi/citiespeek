@@ -4,6 +4,7 @@ import React from 'react';
 import { Image, Location } from '../models/model';
 import { locationStyles } from '../styles/styles';
 import { LocationImage } from './LocationImage';
+import { Weather } from './Weather';
 interface Props {
   readonly image: Image | null;
   readonly open: boolean;
@@ -26,18 +27,20 @@ export const LocationView: React.FC<Props> = ({ image, open, location, hideSideb
         <>
           <LocationImage image={image} hideSidebar={hideSidebar} />
           {location && (
-            <Paper elevation={7} className={c.location}>
-              <div className={c.locationHeaderWrapper}>
-                <h3 className={c.locationText}>{location.city}</h3>
-                <Tooltip title="Location and weather information might differ">
-                  <InfoIcon />
-                </Tooltip>
-              </div>
-              <h4 className={c.locationSubtext}>{location.state}</h4>
-              <h4 className={c.locationSubtext}>{location.country}</h4>
-
-              <span>Lat: {location.lngLat.lat.toFixed(4)}, Long: {location.lngLat.lng.toFixed(4)}</span>
-            </Paper>
+            <>
+              <Paper elevation={7} className={c.location}>
+                <div className={c.locationHeaderWrapper}>
+                  <h3 className={c.locationText}>{location.city}</h3>
+                  <Tooltip title="Location and weather information might differ">
+                    <InfoIcon />
+                  </Tooltip>
+                </div>
+                <h4 className={c.locationSubtext}>{location.state}</h4>
+                <h4 className={c.locationSubtext}>{location.country}</h4>
+                <span>Lat: {location.lngLat.lat.toFixed(4)}, Long: {location.lngLat.lng.toFixed(4)}</span>
+              </Paper>
+              <Weather observation={location.observation} />
+            </>
           )}
         </>
       )}

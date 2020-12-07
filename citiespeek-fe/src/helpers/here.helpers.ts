@@ -17,7 +17,7 @@ export const getWeatherObservation = async (lngLat: LngLat): Promise<Location | 
           state,
           country,
           lngLat,
-          observations: {
+          observation: {
             iconName: icon_name,
             temperature: Number(temperature),
             skyDescription

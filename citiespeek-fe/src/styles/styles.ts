@@ -91,3 +91,14 @@ export const citiesPeekContainerStyles = makeStyles((theme: Theme) =>
     },
   }),
 );
+
+export const weatherStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    container: {
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      padding: '1em'
+    }
+  })
+);

@@ -19,16 +19,17 @@ export const Map: React.FC<Props> = ({ findLocation: handleOnMapClick }) => {
   } as Partial<ViewportProps>)
   const [marker, setMarker] = useState<MarkerProps | null>(null);
 
-  const handleViewportChange = useCallback((viewport: Partial<ViewportProps>) => setViewport(viewport), []);
+  const handleViewportChange = (viewport: Partial<ViewportProps>) => setViewport(viewport);
 
-  const handleViewportChangeGeocoder = useCallback((viewport: Partial<ViewportProps>) => {
+  const handleViewportChangeGeocoder = (viewport: Partial<ViewportProps>) => {
     setViewport(viewport);
     const { longitude, latitude } = viewport;
 
     if (longitude && latitude) {
       setMarker({ longitude, latitude });
+      handleOnMapClick(new LngLat(longitude, latitude));
     }
-  }, []);
+  };
 
   const handleMapOnClick = (event: PointerEvent) => {
     event.preventDefault();

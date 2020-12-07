@@ -1,5 +1,4 @@
-import { CircularProgress, IconButton, Paper, Tooltip } from '@material-ui/core';
-import CloseIcon from '@material-ui/icons/Close';
+import { CircularProgress, Paper, Tooltip } from '@material-ui/core';
 import InfoIcon from '@material-ui/icons/Info';
 import React from 'react';
 import { Image, Location } from '../models/model';

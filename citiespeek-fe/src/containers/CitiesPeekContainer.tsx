@@ -5,7 +5,7 @@ import {
   Typography
 } from '@material-ui/core';
 import { LngLat } from 'mapbox-gl';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { LocationView } from '../components/LocationView';
 import { Map } from '../components/Map';
 import { SideDrawer } from '../components/SideDrawer';

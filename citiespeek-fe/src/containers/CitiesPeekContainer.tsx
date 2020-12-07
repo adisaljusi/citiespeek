@@ -9,6 +9,8 @@ import React, { useEffect, useState } from 'react';
 import { LocationView } from '../components/LocationView';
 import { Map } from '../components/Map';
 import { SideDrawer } from '../components/SideDrawer';
+import { formatValue } from '../helpers/helpers';
+import { getWeatherObservation } from '../helpers/here.helpers';
 import { searchImage } from '../helpers/unsplash.helper';
 import { Image, Location } from '../models/model';
 import { citiesPeekContainerStyles } from '../styles/styles';
@@ -20,21 +22,12 @@ export const CitiesPeekContainer = () => {
   const [location, setLocation] = useState<Location | null>(null);
   const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
 
-  // useEffect(() => {
-  //   // const searchImageAsync = async () => {
-  //   //   const imageSrc = await searchImage('san francisco');
-  //   //   setImage(imageSrc);
-  //   // }
-  //   // searchImageAsync();
-  // });
-
-  const findLocation = (lngLat: LngLat) => {
+  const findLocation = async (lngLat: LngLat) => {
     setSidebarIsOpen(true);
-    setLocation({
-      city: 'San Francisco',
-      country: 'United States of America',
-      lngLat
-    });
+    const location = await getWeatherObservation(lngLat);
+    const image = await searchImage(formatValue(`${location?.city} ${location?.state} ${location?.country}`));
+    setImage(image);
+    setLocation(location)
   }
 
   const hideSidebar = () => setSidebarIsOpen(false);
@@ -56,7 +49,7 @@ export const CitiesPeekContainer = () => {
             image={image}
             open={sidebarIsOpen}
             location={location}
-            hideSidebar={hideSidebar}/>
+            hideSidebar={hideSidebar} />
           <Map findLocation={findLocation} />
         </div>
       </div>

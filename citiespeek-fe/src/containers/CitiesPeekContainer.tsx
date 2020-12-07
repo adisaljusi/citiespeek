@@ -17,7 +17,7 @@ import { citiesPeekContainerStyles } from '../styles/styles';
 
 
 export const CitiesPeekContainer = () => {
-  const classes = citiesPeekContainerStyles();
+  const c = citiesPeekContainerStyles();
   const [image, setImage] = useState<Image | null>(null);
   const [location, setLocation] = useState<Location | null>(null);
   const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
@@ -34,9 +34,9 @@ export const CitiesPeekContainer = () => {
 
   return (
     <>
-      <div className={classes.root}>
+      <div className={c.root}>
         <CssBaseline />
-        <AppBar position="fixed" color="default" className={classes.appBar}>
+        <AppBar position="fixed" color="default" className={c.appBar}>
           <Toolbar>
             <Typography variant="h6">
               CitiesPeek
@@ -44,7 +44,7 @@ export const CitiesPeekContainer = () => {
           </Toolbar>
         </AppBar>
         <SideDrawer />
-        <div className={classes.content}>
+        <div className={c.content}>
           <LocationView
             image={image}
             open={sidebarIsOpen}

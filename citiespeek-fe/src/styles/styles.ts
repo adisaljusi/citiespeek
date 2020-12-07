@@ -41,7 +41,8 @@ export const locationStyles = makeStyles((theme: Theme) =>
     },
     location: {
       marginTop: -5,
-      background: 'rgba(0, 0, 0, 0.01)'
+      background: 'rgba(214, 214, 215, 0.5)',
+      padding: '1em'
     },
     imageContainer: {
       display: 'flex',
@@ -51,6 +52,24 @@ export const locationStyles = makeStyles((theme: Theme) =>
     imageButton: {
       position: 'absolute',
       background: '#FFF'
+    },
+    locationText: {
+      marginTop: 0,
+      marginBottom: '0.5em'
+    },
+    locationSubtext: {
+      marginTop: 0,
+      marginBottom: '0.5em'
+    },
+    locationHeaderWrapper: {
+      display: 'flex',
+      justifyContent: 'space-between'
+    },
+    loading: {
+      height: '100%',
+      alignItems: 'center',
+      display: 'flex',
+      justifyContent: 'center'
     }
   }),
 );

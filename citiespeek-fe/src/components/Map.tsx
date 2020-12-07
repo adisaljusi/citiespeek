@@ -1,5 +1,5 @@
 import { LngLat } from 'mapbox-gl';
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { FlyToInterpolator, InteractiveMap, Marker, MarkerProps, PointerEvent, ViewportProps } from 'react-map-gl';
 import Geocoder from 'react-map-gl-geocoder';
 import { environment } from '../environment/environment';

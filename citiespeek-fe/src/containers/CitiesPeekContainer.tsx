@@ -21,13 +21,16 @@ export const CitiesPeekContainer = () => {
   const [image, setImage] = useState<Image | null>(null);
   const [location, setLocation] = useState<Location | null>(null);
   const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const findLocation = async (lngLat: LngLat) => {
+    setLoading(true);
     setSidebarIsOpen(true);
     const location = await getWeatherObservation(lngLat);
     const image = await searchImage(formatValue(`${location?.city} ${location?.state} ${location?.country}`));
     setImage(image);
     setLocation(location)
+    setLoading(false);
   }
 
   const hideSidebar = () => setSidebarIsOpen(false);
@@ -49,7 +52,8 @@ export const CitiesPeekContainer = () => {
             image={image}
             open={sidebarIsOpen}
             location={location}
-            hideSidebar={hideSidebar} />
+            hideSidebar={hideSidebar}
+            loading={loading} />
           <Map findLocation={findLocation} />
         </div>
       </div>

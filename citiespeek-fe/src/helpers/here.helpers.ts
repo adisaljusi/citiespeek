@@ -10,7 +10,7 @@ export const getWeatherObservation = async (lngLat: LngLat): Promise<Location | 
     .then(res => res.status === 200 ? res.json() : null)
     .then(res => {
       if (res != null) {
-        const { city, state, country, icon_name, temperature, skyDescription } = res.observations.location[0].observation[0];
+        const { city, state, country, temperature, skyDescription } = res.observations.location[0].observation[0];
 
         return {
           city,
@@ -18,7 +18,6 @@ export const getWeatherObservation = async (lngLat: LngLat): Promise<Location | 
           country,
           lngLat,
           observation: {
-            iconName: icon_name,
             temperature: Number(temperature),
             skyDescription
           }

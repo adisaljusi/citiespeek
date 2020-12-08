@@ -98,7 +98,25 @@ export const weatherStyles = makeStyles((theme: Theme) =>
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'center',
+      alignItems: 'center',
       padding: '1em'
+    },
+    weather: {
+      display: 'flex',
+      justifyContent: 'center'
+    },
+    skyDescription: {
+      marginTop: 0
+    },
+    buttons: {
+      display: 'flex',
+      justifyContent: 'center'
+    },
+    image: {
+      height: 65
+    },
+    dismissButton: {
+      marginRight: '0.75em'
     }
   })
 );

@@ -10,7 +10,11 @@ import ViewListIcon from '@material-ui/icons/ViewList';
 import React from 'react';
 import { sideDrawerStyles } from '../styles/styles';
 
-export const SideDrawer = () => {
+interface Props {
+  readonly openSidebar: () => void
+}
+
+export const SideDrawer: React.FC<Props> = ({ openSidebar }) => {
   const c = sideDrawerStyles();
   return (
     <Drawer
@@ -21,8 +25,8 @@ export const SideDrawer = () => {
       }}>
       <Toolbar />
       <List>
-        <Tooltip title="Map">
-          <ListItem button>
+        <Tooltip title="Location">
+          <ListItem button onClick={openSidebar}>
             <ListItemIcon><ExploreIcon /></ListItemIcon>
           </ListItem>
         </Tooltip>

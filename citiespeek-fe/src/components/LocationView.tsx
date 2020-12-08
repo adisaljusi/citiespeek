@@ -18,12 +18,15 @@ export const LocationView: React.FC<Props> = ({ image, open, location, hideSideb
 
   return (
     <div className={!open ? c.closed : c.root}>
+      {!loading && location === null && (
+        <div>Please select a location</div>
+      )}
       {loading && (
         <div className={c.loading}>
           <CircularProgress />
         </div>
       )}
-      {!loading && (
+      {!loading && location !== null && (
         <>
           <LocationImage image={image} hideSidebar={hideSidebar} />
           {location && (

@@ -15,13 +15,12 @@ import { searchImage } from '../helpers/unsplash.helper';
 import { Image, Location } from '../models/model';
 import { citiesPeekContainerStyles } from '../styles/styles';
 
-
 export const CitiesPeekContainer = () => {
   const c = citiesPeekContainerStyles();
   const [image, setImage] = useState<Image | null>(null);
   const [location, setLocation] = useState<Location | null>(null);
   const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const findLocation = async (lngLat: LngLat) => {
     setLoading(true);
@@ -34,6 +33,7 @@ export const CitiesPeekContainer = () => {
   }
 
   const hideSidebar = () => setSidebarIsOpen(false);
+  const openSidebar = () => setSidebarIsOpen(true);
 
   return (
     <>
@@ -46,7 +46,7 @@ export const CitiesPeekContainer = () => {
             </Typography>
           </Toolbar>
         </AppBar>
-        <SideDrawer />
+        <SideDrawer openSidebar={openSidebar}/>
         <div className={c.content}>
           <LocationView
             image={image}

@@ -1,18 +1,18 @@
 import { Button } from '@material-ui/core';
+import CloseIcon from '@material-ui/icons/Close';
+import SaveIcon from '@material-ui/icons/Save';
 import React from 'react';
 import { weatherIconMap } from '../helpers/helpers';
-import { Observation } from '../models/model';
+import { Observation, WeatherType } from '../models/model';
 import { weatherStyles } from '../styles/styles';
-import SaveIcon from '@material-ui/icons/Save';
-import CloseIcon from '@material-ui/icons/Close';
-
 interface Props {
   readonly observation: Observation;
 }
 
 export const Weather: React.FC<Props> = ({ observation }) => {
   const c = weatherStyles();
-  const imageSrc = weatherIconMap[observation.skyDescription].replace(' ', '');
+  const weatherType = observation.skyDescription.toLowerCase().replace(' ', '') as WeatherType;
+  const imageSrc = weatherIconMap[weatherType];
 
   return (
     <>

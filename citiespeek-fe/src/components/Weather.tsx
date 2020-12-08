@@ -12,7 +12,7 @@ interface Props {
 
 export const Weather: React.FC<Props> = ({ observation }) => {
   const c = weatherStyles();
-  const imageSrc = weatherIconMap[observation.skyDescription];
+  const imageSrc = weatherIconMap[observation.skyDescription].replace(' ', '');
 
   return (
     <>

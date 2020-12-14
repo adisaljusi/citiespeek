@@ -8,6 +8,7 @@ import {
 import ExploreIcon from '@material-ui/icons/Explore';
 import ViewListIcon from '@material-ui/icons/ViewList';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { sideDrawerStyles } from '../styles/styles';
 
 interface Props {
@@ -16,6 +17,7 @@ interface Props {
 
 export const SideDrawer: React.FC<Props> = ({ openSidebar }) => {
   const c = sideDrawerStyles();
+
   return (
     <Drawer
       variant="permanent"
@@ -26,16 +28,21 @@ export const SideDrawer: React.FC<Props> = ({ openSidebar }) => {
       <Toolbar />
       <List>
         <Tooltip title="Location">
-          <ListItem button onClick={openSidebar}>
-            <ListItemIcon><ExploreIcon /></ListItemIcon>
-          </ListItem>
+          <Link to="/location">
+            <ListItem button onClick={openSidebar}>
+              <ListItemIcon><ExploreIcon /></ListItemIcon>
+            </ListItem>
+          </Link>
         </Tooltip>
         <Tooltip title="Saved Locations">
-          <ListItem button>
-            <ListItemIcon><ViewListIcon /></ListItemIcon>
-          </ListItem>
+          <Link to="/entries">
+            <ListItem button onClick={openSidebar}>
+              <ListItemIcon><ViewListIcon /></ListItemIcon>
+            </ListItem>
+          </Link>
         </Tooltip>
       </List>
       <Divider />
-    </Drawer>);
+    </Drawer>
+  );
 }

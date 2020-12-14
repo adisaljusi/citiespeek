@@ -6,6 +6,11 @@ import {
 } from '@material-ui/core';
 import { LngLat } from 'mapbox-gl';
 import React, { useState } from 'react';
+import {
+  BrowserRouter as Router,
+  Redirect, Route, Switch
+} from "react-router-dom";
+import { Entries } from '../components/Entries';
 import { LocationView } from '../components/LocationView';
 import { Map } from '../components/Map';
 import { SideDrawer } from '../components/SideDrawer';
@@ -14,14 +19,6 @@ import { getWeatherObservation } from '../helpers/here.helpers';
 import { searchImage } from '../helpers/unsplash.helper';
 import { Image, Location } from '../models/model';
 import { citiesPeekContainerStyles } from '../styles/styles';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  Redirect
-} from "react-router-dom";
-
 
 export const CitiesPeekContainer = () => {
   const c = citiesPeekContainerStyles();
@@ -45,18 +42,18 @@ export const CitiesPeekContainer = () => {
 
   return (
     <>
-      <div className={c.root}>
-        <CssBaseline />
-        <AppBar position="fixed" color="default" className={c.appBar}>
-          <Toolbar>
-            <Typography variant="h6">
-              CitiesPeek
+      <Router>
+        <div className={c.root}>
+          <CssBaseline />
+          <AppBar position="fixed" color="default" className={c.appBar}>
+            <Toolbar>
+              <Typography variant="h6">
+                CitiesPeek
             </Typography>
-          </Toolbar>
-        </AppBar>
-        <SideDrawer openSidebar={openSidebar} />
-        <div className={c.content}>
-          <Router>
+            </Toolbar>
+          </AppBar>
+          <SideDrawer openSidebar={openSidebar} />
+          <div className={c.content}>
             <Switch>
               <Route path="/location/:id?">
                 <LocationView
@@ -67,17 +64,16 @@ export const CitiesPeekContainer = () => {
                   loading={loading} />
               </Route>
               <Route exact path="/entries">
-                <div></div>
+                <Entries />
               </Route>
               <Route exact path="/">
-                <Redirect to="/location"/>
+                <Redirect to="/location" />
               </Route>
             </Switch>
-          </Router>
-
-          <Map findLocation={findLocation} />
+            <Map findLocation={findLocation} />
+          </div>
         </div>
-      </div>
+      </Router>
     </>
   );
 }

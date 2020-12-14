@@ -5,9 +5,9 @@ import {
   Typography
 } from '@material-ui/core';
 import { LngLat } from 'mapbox-gl';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
-  Redirect, Route, Switch, useParams
+  Redirect, Route, Switch
 } from "react-router-dom";
 import { Entries } from '../components/Entries';
 import { LocationView } from '../components/LocationView';
@@ -26,13 +26,6 @@ export const CitiesPeekContainer = () => {
   const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [entries, setEntries] = useState<Entry[]>([]);
-  const { id } = useParams<{ id: string | undefined }>();
-
-  useEffect(() => {
-    if (id) {
-      console.log(id);
-    }
-  }, [id])
 
   const findLocation = async (lngLat: LngLat) => {
     setLoading(true);
@@ -42,6 +35,11 @@ export const CitiesPeekContainer = () => {
     setImage(image);
     setLocation(location)
     setLoading(false);
+  }
+
+  const handleLocationById = async (id: string) => {
+    setLoading(true);
+    setSidebarIsOpen(true);
   }
 
   const hideSidebar = () => setSidebarIsOpen(false);
@@ -61,13 +59,23 @@ export const CitiesPeekContainer = () => {
         <SideDrawer openSidebar={openSidebar} />
         <div className={c.content}>
           <Switch>
-            <Route path="/location/:id?">
+            <Route exact path="/location">
               <LocationView
                 image={image}
                 open={sidebarIsOpen}
                 location={location}
                 hideSidebar={hideSidebar}
-                loading={loading} />
+                loading={loading}
+                handleLocationById={handleLocationById}/>
+            </Route>
+            <Route exact path="/location/:id">
+              <LocationView
+                image={image}
+                open={sidebarIsOpen}
+                location={location}
+                hideSidebar={hideSidebar}
+                loading={loading} 
+                handleLocationById={handleLocationById}/>
             </Route>
             <Route exact path="/entries">
               <Entries entries={entries} />

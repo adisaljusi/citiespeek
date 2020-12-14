@@ -1,6 +1,7 @@
 import { CircularProgress, Paper, Tooltip } from '@material-ui/core';
 import InfoIcon from '@material-ui/icons/Info';
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { Image, Location } from '../models/model';
 import { locationStyles } from '../styles/styles';
 import { LocationImage } from './LocationImage';
@@ -11,10 +12,18 @@ interface Props {
   readonly location: Location | null;
   readonly loading: boolean;
   readonly hideSidebar: () => void;
+  readonly handleLocationById: (id: string) => void;
 }
 
-export const LocationView: React.FC<Props> = ({ image, open, location, hideSidebar, loading }) => {
+export const LocationView: React.FC<Props> = ({ image, open, location, hideSidebar, loading, handleLocationById: handleLocationId }) => {
   const c = locationStyles();
+  const { id } = useParams<{ id: string | undefined }>();
+
+  useEffect(() => {
+    if (id) {
+      console.log(id);
+    }
+  }, [id])
 
   return (
     <div className={!open ? c.closed : c.root}>

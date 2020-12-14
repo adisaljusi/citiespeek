@@ -5,19 +5,18 @@ import {
   Typography
 } from '@material-ui/core';
 import { LngLat } from 'mapbox-gl';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
-  BrowserRouter as Router,
-  Redirect, Route, Switch
+  Redirect, Route, Switch, useParams
 } from "react-router-dom";
 import { Entries } from '../components/Entries';
 import { LocationView } from '../components/LocationView';
 import { Map } from '../components/Map';
 import { SideDrawer } from '../components/SideDrawer';
 import { formatValue } from '../helpers/helpers';
-import { getWeatherObservation } from '../helpers/here.helpers';
-import { searchImage } from '../helpers/unsplash.helper';
-import { Image, Location } from '../models/model';
+import { getWeatherObservation } from '../helpers/here.fetch';
+import { searchImage } from '../helpers/unsplash.fetch';
+import { Entry, Image, Location } from '../models/model';
 import { citiesPeekContainerStyles } from '../styles/styles';
 
 export const CitiesPeekContainer = () => {
@@ -26,6 +25,14 @@ export const CitiesPeekContainer = () => {
   const [location, setLocation] = useState<Location | null>(null);
   const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [entries, setEntries] = useState<Entry[]>([]);
+  const { id } = useParams<{ id: string | undefined }>();
+
+  useEffect(() => {
+    if (id) {
+      console.log(id);
+    }
+  }, [id])
 
   const findLocation = async (lngLat: LngLat) => {
     setLoading(true);
@@ -42,38 +49,36 @@ export const CitiesPeekContainer = () => {
 
   return (
     <>
-      <Router>
-        <div className={c.root}>
-          <CssBaseline />
-          <AppBar position="fixed" color="default" className={c.appBar}>
-            <Toolbar>
-              <Typography variant="h6">
-                CitiesPeek
+      <CssBaseline />
+      <div className={c.root}>
+        <AppBar position="fixed" color="default" className={c.appBar}>
+          <Toolbar>
+            <Typography variant="h6">
+              CitiesPeek
             </Typography>
-            </Toolbar>
-          </AppBar>
-          <SideDrawer openSidebar={openSidebar} />
-          <div className={c.content}>
-            <Switch>
-              <Route path="/location/:id?">
-                <LocationView
-                  image={image}
-                  open={sidebarIsOpen}
-                  location={location}
-                  hideSidebar={hideSidebar}
-                  loading={loading} />
-              </Route>
-              <Route exact path="/entries">
-                <Entries />
-              </Route>
-              <Route exact path="/">
-                <Redirect to="/location" />
-              </Route>
-            </Switch>
-            <Map findLocation={findLocation} />
-          </div>
+          </Toolbar>
+        </AppBar>
+        <SideDrawer openSidebar={openSidebar} />
+        <div className={c.content}>
+          <Switch>
+            <Route path="/location/:id?">
+              <LocationView
+                image={image}
+                open={sidebarIsOpen}
+                location={location}
+                hideSidebar={hideSidebar}
+                loading={loading} />
+            </Route>
+            <Route exact path="/entries">
+              <Entries entries={entries} />
+            </Route>
+            <Route exact path="/">
+              <Redirect to="/location" />
+            </Route>
+          </Switch>
+          <Map findLocation={findLocation} />
         </div>
-      </Router>
+      </div>
     </>
   );
 }

@@ -11,7 +11,9 @@ interface Environment {
   readonly unsplashConfig: {
     readonly URI: string;
     readonly ACCESS_KEY: string;
-  }
+  },
+  // CitiesPeek API
+  readonly CP_API_URL: string;
 }
 
 export const environment: Environment = {
@@ -27,5 +29,7 @@ export const environment: Environment = {
   unsplashConfig: {
     URI: 'https://api.unsplash.com',
     ACCESS_KEY: process.env.REACT_APP_UNSPLASH_ACCESS_KEY as string
-  }
+  },
+  // TODO: remove for prod
+  CP_API_URL: 'http://localhost:5000'
 };

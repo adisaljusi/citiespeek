@@ -58,3 +58,10 @@ export type WeatherType =
 export type WeatherIconMap = {
   readonly [key in WeatherType]: string;
 }
+
+export interface Entry {
+  readonly id: string;
+  readonly dateTime: string;
+  readonly latitude: string;
+  readonly longitude: string;
+}

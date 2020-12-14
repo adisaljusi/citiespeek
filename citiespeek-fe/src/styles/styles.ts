@@ -123,3 +123,21 @@ export const weatherStyles = makeStyles((theme: Theme) =>
     }
   })
 );
+
+
+export const entriesStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      width: '30%',
+      zIndex: 121,
+      boxShadow: '2px 2px 4px -1px rgba(0,0,0,0.2), 4px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12)',
+      transition: 'width 0.5s ease-in-out'
+    },
+    container: {
+      padding: 10
+    },
+    noEntriesSubtext: {
+      textAlign: 'center'
+    }
+  })
+);

@@ -9,7 +9,7 @@ import { WeatherIconMap } from '../models/model';
 export const formatValue = (value: string): string => value.replaceAll(/[.,[]{}]/g, '');
 
 // TODO: find icon for smoke
-// TODO: fix some indexes since their not corresponding to the 
+// TODO: fix some indexes since their not corresponding to how the API should be used
 export const weatherIconMap: WeatherIconMap = {
   clear: day,
   sunny: day,

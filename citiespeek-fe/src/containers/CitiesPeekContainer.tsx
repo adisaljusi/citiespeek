@@ -14,6 +14,14 @@ import { getWeatherObservation } from '../helpers/here.helpers';
 import { searchImage } from '../helpers/unsplash.helper';
 import { Image, Location } from '../models/model';
 import { citiesPeekContainerStyles } from '../styles/styles';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  Redirect
+} from "react-router-dom";
+
 
 export const CitiesPeekContainer = () => {
   const c = citiesPeekContainerStyles();
@@ -46,14 +54,27 @@ export const CitiesPeekContainer = () => {
             </Typography>
           </Toolbar>
         </AppBar>
-        <SideDrawer openSidebar={openSidebar}/>
+        <SideDrawer openSidebar={openSidebar} />
         <div className={c.content}>
-          <LocationView
-            image={image}
-            open={sidebarIsOpen}
-            location={location}
-            hideSidebar={hideSidebar}
-            loading={loading} />
+          <Router>
+            <Switch>
+              <Route path="/location/:id?">
+                <LocationView
+                  image={image}
+                  open={sidebarIsOpen}
+                  location={location}
+                  hideSidebar={hideSidebar}
+                  loading={loading} />
+              </Route>
+              <Route exact path="/entries">
+                <div></div>
+              </Route>
+              <Route exact path="/">
+                <Redirect to="/location"/>
+              </Route>
+            </Switch>
+          </Router>
+
           <Map findLocation={findLocation} />
         </div>
       </div>

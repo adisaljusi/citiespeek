@@ -1,11 +1,11 @@
 package ch.adisaljusi.citiespeekapi.Domain;
 
-
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
@@ -16,6 +16,7 @@ public class Location {
   @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
   private UUID id;
 
+  private String dateTime;
   private double latitude;
   private double longitude;
 }

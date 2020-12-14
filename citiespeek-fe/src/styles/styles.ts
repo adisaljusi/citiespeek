@@ -9,6 +9,9 @@ export const sideDrawerStyles = makeStyles((theme: Theme) =>
     drawerPaper: {
       width: 60,
       overflow: 'hidden'
+    },
+    link: {
+      color: 'inherit'
     }
   }),
 );

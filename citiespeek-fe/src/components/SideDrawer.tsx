@@ -28,14 +28,14 @@ export const SideDrawer: React.FC<Props> = ({ openSidebar }) => {
       <Toolbar />
       <List>
         <Tooltip title="Location">
-          <Link to="/location">
+          <Link to="/location" className={c.link}>
             <ListItem button onClick={openSidebar}>
               <ListItemIcon><ExploreIcon /></ListItemIcon>
             </ListItem>
           </Link>
         </Tooltip>
         <Tooltip title="Saved Locations">
-          <Link to="/entries">
+          <Link to="/entries" className={c.link}>
             <ListItem button onClick={openSidebar}>
               <ListItemIcon><ViewListIcon /></ListItemIcon>
             </ListItem>

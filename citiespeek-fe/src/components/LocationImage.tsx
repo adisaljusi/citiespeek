@@ -1,8 +1,8 @@
 import { IconButton } from '@material-ui/core';
+import CloseIcon from '@material-ui/icons/Close';
 import React from 'react';
 import { Image } from '../models/model';
 import { locationStyles } from '../styles/styles';
-import CloseIcon from '@material-ui/icons/Close';
 
 interface Props {
   readonly image: Image | null;

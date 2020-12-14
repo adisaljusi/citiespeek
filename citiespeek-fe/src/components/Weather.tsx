@@ -5,6 +5,7 @@ import React from 'react';
 import { weatherIconMap } from '../helpers/helpers';
 import { Observation, WeatherType } from '../models/model';
 import { weatherStyles } from '../styles/styles';
+
 interface Props {
   readonly observation: Observation;
 }

@@ -138,6 +138,10 @@ export const entriesStyles = makeStyles((theme: Theme) =>
     },
     noEntriesSubtext: {
       textAlign: 'center'
+    },
+    link: {
+      color: 'inherit',
+      textDecoration: 'none'
     }
   })
 );

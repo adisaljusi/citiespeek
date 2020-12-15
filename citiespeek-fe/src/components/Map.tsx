@@ -1,5 +1,5 @@
 import { LngLat } from 'mapbox-gl';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { FlyToInterpolator, InteractiveMap, Marker, MarkerProps, PointerEvent, ViewportProps } from 'react-map-gl';
 import Geocoder from 'react-map-gl-geocoder';
 import { environment } from '../environment/environment';
@@ -8,9 +8,13 @@ import markerImage from './marker.svg';
 
 interface Props {
   readonly findLocation: (lngLat: LngLat) => void;
+  readonly transmittedLocation: {
+    readonly longitude: number;
+    readonly latitude: number
+  } | null;
 }
 
-export const Map: React.FC<Props> = ({ findLocation: handleOnMapClick }) => {
+export const Map: React.FC<Props> = ({ findLocation, transmittedLocation }) => {
   const mapRef = useRef<InteractiveMap>(null);
   const [viewport, setViewport] = useState({
     latitude: 37.7510189888697,
@@ -18,6 +22,12 @@ export const Map: React.FC<Props> = ({ findLocation: handleOnMapClick }) => {
     zoom: 12
   } as Partial<ViewportProps>)
   const [marker, setMarker] = useState<MarkerProps | null>(null);
+
+  useEffect(() => {
+    if (transmittedLocation) {
+      handleLocationById(transmittedLocation)
+    }
+  }, [transmittedLocation])
 
   const handleViewportChange = (viewport: Partial<ViewportProps>) => setViewport(viewport);
 
@@ -27,7 +37,7 @@ export const Map: React.FC<Props> = ({ findLocation: handleOnMapClick }) => {
 
     if (longitude && latitude) {
       setMarker({ longitude, latitude });
-      handleOnMapClick(new LngLat(longitude, latitude));
+      findLocation(new LngLat(longitude, latitude));
     }
   };
 
@@ -42,7 +52,20 @@ export const Map: React.FC<Props> = ({ findLocation: handleOnMapClick }) => {
       transitionDuration: 1000,
       transitionInterpolator: new FlyToInterpolator()
     });
-    handleOnMapClick(new LngLat(longitude, latitude));
+    findLocation(new LngLat(longitude, latitude));
+  }
+
+  const handleLocationById = (location: { longitude: number, latitude: number }) => {
+    const { longitude, latitude } = location;
+    setMarker({ longitude, latitude });
+    setViewport({
+      ...viewport,
+      longitude,
+      latitude,
+      transitionDuration: 1000,
+      transitionInterpolator: new FlyToInterpolator()
+    });
+    findLocation(new LngLat(longitude, latitude));
   }
 
   return (

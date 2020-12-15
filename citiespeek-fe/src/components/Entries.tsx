@@ -24,7 +24,7 @@ export const Entries: React.FC<Props> = ({ entries }) => {
                   <ListItemIcon>
                     <PinDropIcon />
                   </ListItemIcon>
-                  <ListItemText primary={`${entry.latitude.toFixed(2)} ${entry.latitude.toFixed(2)}`} secondary={new Date(entry.dateTime).toDateString()} />
+                  <ListItemText primary={`${entry.latitude.toFixed(2)} ${entry.longitude.toFixed(2)}`} secondary={new Date(entry.dateTime).toDateString()} />
                 </ListItem>
               </Link>
             ))}

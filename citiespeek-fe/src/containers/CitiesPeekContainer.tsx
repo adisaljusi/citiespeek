@@ -27,6 +27,7 @@ export const CitiesPeekContainer = () => {
   const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [entries, setEntries] = useState<Entry[]>([]);
+  const [transmittedLocation, setTransmittedLocation] = useState<{ longitude: number, latitude: number } | null>(null);
 
   const findLocation = async (lngLat: LngLat) => {
     setLoading(true);
@@ -44,7 +45,9 @@ export const CitiesPeekContainer = () => {
     const entry = await getEntryById(id);
 
     if (entry) {
-      await findLocation(new LngLat(entry.longitude, entry.latitude));
+      const { longitude, latitude } = entry;
+      await findLocation(new LngLat(longitude, latitude));
+      setTransmittedLocation({ longitude, latitude });
     }
   }
 
@@ -112,7 +115,7 @@ export const CitiesPeekContainer = () => {
               <Redirect to="/location" />
             </Route>
           </Switch>
-          <Map findLocation={findLocation} />
+          <Map findLocation={findLocation} transmittedLocation={transmittedLocation} />
         </div>
       </div>
     </>

@@ -15,16 +15,18 @@ export const Entries: React.FC<Props> = ({ entries }) => {
     <div className={c.root}>
       <div className={c.container}>
         <h3>Entries</h3>
-        {entries && entries.map(entry => (
+        {entries && (
           <List component="nav" aria-label="main mailbox folders">
-            <ListItem button>
-              <ListItemIcon>
-                <PinDropIcon />
-              </ListItemIcon>
-              <ListItemText primary="Test" secondary="20-10-2020" />
-            </ListItem>
+            {entries.map((entry, id) => (
+              <ListItem button key={id}>
+                <ListItemIcon>
+                  <PinDropIcon />
+                </ListItemIcon>
+                <ListItemText primary={`${entry.latitude.toFixed(2)} ${entry.latitude.toFixed(2)}`} secondary={new Date(entry.dateTime).toDateString()} />
+              </ListItem>
+            ))}
           </List>
-        ))}
+        )}
         {entries.length < 1 && (
           <h5 className={c.noEntriesSubtext}>No entries yet.</h5>
         )}

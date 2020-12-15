@@ -118,15 +118,8 @@ export const weatherStyles = makeStyles((theme: Theme) =>
     skyDescription: {
       marginTop: 0
     },
-    buttons: {
-      display: 'flex',
-      justifyContent: 'center'
-    },
     image: {
       height: 65
-    },
-    dismissButton: {
-      marginRight: '0.75em'
     }
   })
 );

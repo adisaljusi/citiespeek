@@ -1,7 +1,10 @@
 import { environment } from '../environment/environment';
 import { Entry, Location } from '../models/model';
 
-export const getLocationById = async (id: string): Promise<Entry | null> => {
+const headers = new Headers();
+headers.append('Access-Control-Allow-Origin', 'http://localhost:5000')
+
+export const getEntryById = async (id: string): Promise<Entry | null> => {
   return fetch(`${environment.CP_API_URL}/location/${id}`, { method: 'GET' })
     .then(res => res.status === 200 ? res.json() : null)
     .then(res => {
@@ -14,8 +17,9 @@ export const getLocationById = async (id: string): Promise<Entry | null> => {
 }
 
 
-export const getLocations = async (): Promise<Entry[]> => {
-  return fetch(`${environment.CP_API_URL}/location`, { method: 'GET' })
+export const getEntries = async (): Promise<Entry[]> => {
+
+  return fetch(`${environment.CP_API_URL}/location`, { method: 'GET', headers }, )
     .then(res => res.status === 200 ? res.json() : null)
     .then(res => {
       if (res != null) {
@@ -26,7 +30,7 @@ export const getLocations = async (): Promise<Entry[]> => {
     });
 }
 
-export const insertLocation = async (location: Location): Promise<void> => {
+export const insertEntry = async (location: Location): Promise<void> => {
   const body = JSON.stringify({
     dateTime: new Date().toISOString(),
     latitude: location.lngLat.lat,
@@ -35,6 +39,8 @@ export const insertLocation = async (location: Location): Promise<void> => {
 
   fetch(
     `${environment.CP_API_URL}/location`,
-    { method: 'POST', body },
+    {
+      method: 'POST', body, headers
+    },
   );
 } 

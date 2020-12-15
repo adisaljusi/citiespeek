@@ -41,7 +41,9 @@ yarn install in the **citiespeek-fe** folder
 
 ##### Run the application
 
-You need three environment variables to be able to start the application.
+```./gradlew bootRun``` for the backend in the **citiespeek-api** folder.
+
+You need three environment variables to be able to start the frontend application.
 - REACT_APP_MAPBOX_KEY
 - REACT_APP_UNSPLASH_ACCESS_KEY
 - REACT_APP_HERE_APY_KEY
@@ -50,4 +52,10 @@ Export environment variables. (Just Google this. I ain't gonna put links for som
 
 If everything is fine, just run `yarn run start` 🚀 (without the rocket)
 
+
+## Read before criticising 
+
+wHy dOn'T yOu UsE dOcKeR cOmPose??
+
+Docker compose from my side isn't as easy just creating one file and done. For production, I don't think it's the best suitable tool and if you would use an container orchestration system like K8S, then you'd have to translate your file. Also, you don't get the availability to use replicas, deployment and services. You'd have to use Docker Swarm and I'm not the biggest fan of it. Also, since I'm using the Azure cloud and deploy my images to Web App services (equivalent to Elastic Beanstalk or Container in AWS), there are certain issues with authentication in multi container Web App.
 

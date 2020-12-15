@@ -17,11 +17,12 @@ interface Props {
   readonly hideSidebar: () => void;
   readonly handleLocationById: (id: string) => void;
   readonly saveLocation: () => void;
+  readonly updateLocation: (id: string) => void;
   readonly dismissLocation: () => void;
 }
 
 export const LocationView: React.FC<Props> =
-  ({ image, open, location, hideSidebar, loading, handleLocationById, dismissLocation, saveLocation }) => {
+  ({ image, open, location, hideSidebar, loading, handleLocationById, dismissLocation, saveLocation, updateLocation }) => {
     const c = locationStyles();
     const { id } = useParams<{ id: string | undefined }>();
 
@@ -66,13 +67,24 @@ export const LocationView: React.FC<Props> =
                     onClick={dismissLocation}>
                     Dismiss
                 </Button>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    startIcon={<SaveIcon />}
-                    onClick={saveLocation}>
-                    Save
-                </Button>
+                  {id && (
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      startIcon={<SaveIcon />}
+                      onClick={() => updateLocation(id)}>
+                      Save
+                    </Button>
+                  )}
+                  {!id && (
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      startIcon={<SaveIcon />}
+                      onClick={saveLocation}>
+                      Save
+                    </Button>
+                  )}
                 </div>
               </>
             )}

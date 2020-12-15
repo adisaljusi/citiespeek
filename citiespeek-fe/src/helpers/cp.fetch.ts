@@ -19,8 +19,7 @@ export const getEntryById = async (id: string): Promise<Entry | null> => {
 
 
 export const getEntries = async (): Promise<Entry[]> => {
-
-  return fetch(`${environment.CP_API_URL}/location`, { method: 'GET', headers }, )
+  return fetch(`${environment.CP_API_URL}/location`, { method: 'GET', headers },)
     .then(res => res.status === 200 ? res.json() : null)
     .then(res => {
       if (res != null) {
@@ -42,6 +41,17 @@ export const insertEntry = async (location: Location): Promise<void> => {
     `${environment.CP_API_URL}/location`,
     {
       method: 'POST', body, headers
+    },
+  );
+}
+
+export const updateEntry = async (entry: Entry): Promise<void> => {
+  const body = JSON.stringify(entry);
+
+  fetch(
+    `${environment.CP_API_URL}/location/${entry.id}`,
+    {
+      method: 'PUT', body, headers
     },
   );
 } 

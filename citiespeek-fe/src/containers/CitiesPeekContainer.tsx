@@ -13,7 +13,7 @@ import { Entries } from '../components/Entries';
 import { LocationView } from '../components/LocationView';
 import { Map } from '../components/Map';
 import { SideDrawer } from '../components/SideDrawer';
-import { getEntryById, getEntries, insertEntry } from '../helpers/cp.fetch';
+import { getEntryById, getEntries, insertEntry, updateEntry } from '../helpers/cp.fetch';
 import { formatValue } from '../helpers/helpers';
 import { getWeatherObservation } from '../helpers/here.fetch';
 import { searchImage } from '../helpers/unsplash.fetch';
@@ -66,6 +66,19 @@ export const CitiesPeekContainer = () => {
     }
   };
 
+  const updateLocation = async (id: string) => {
+    if (location && id) {
+
+      const entry: Entry = {
+        id,
+        dateTime: new Date().toISOString(),
+        latitude: location.lngLat.lat,
+        longitude: location.lngLat.lng,
+      };
+      await updateEntry(entry);
+    }
+  }
+
   const dismissLocation = () => {
     setSidebarIsOpen(false);
     setLocation(null);
@@ -94,7 +107,8 @@ export const CitiesPeekContainer = () => {
                 loading={loading}
                 handleLocationById={handleLocationById}
                 saveLocation={saveLocation}
-                dismissLocation={dismissLocation} />
+                updateLocation={updateLocation}
+                dismissLocation={dismissLocation}/>
             </Route>
             <Route exact path="/location/:id">
               <LocationView
@@ -104,8 +118,8 @@ export const CitiesPeekContainer = () => {
                 hideSidebar={hideSidebar}
                 loading={loading}
                 handleLocationById={handleLocationById}
-                // TODO: PATCH for handle updating location
                 saveLocation={saveLocation}
+                updateLocation={updateLocation}
                 dismissLocation={dismissLocation} />
             </Route>
             <Route exact path="/entries">

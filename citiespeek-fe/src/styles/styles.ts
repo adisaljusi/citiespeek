@@ -73,6 +73,13 @@ export const locationStyles = makeStyles((theme: Theme) =>
       alignItems: 'center',
       display: 'flex',
       justifyContent: 'center'
+    },
+    buttons: {
+      display: 'flex',
+      justifyContent: 'center'
+    },
+    dismissButton: {
+      marginRight: '0.75em'
     }
   }),
 );

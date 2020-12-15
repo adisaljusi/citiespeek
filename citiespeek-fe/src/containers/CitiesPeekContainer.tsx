@@ -13,7 +13,7 @@ import { Entries } from '../components/Entries';
 import { LocationView } from '../components/LocationView';
 import { Map } from '../components/Map';
 import { SideDrawer } from '../components/SideDrawer';
-import { getEntryById, getEntries } from '../helpers/cp.fetch';
+import { getEntryById, getEntries, insertEntry } from '../helpers/cp.fetch';
 import { formatValue } from '../helpers/helpers';
 import { getWeatherObservation } from '../helpers/here.fetch';
 import { searchImage } from '../helpers/unsplash.fetch';
@@ -57,6 +57,17 @@ export const CitiesPeekContainer = () => {
     setEntries(entries);
   }
 
+  const saveLocation = async () => {
+    if (location) {
+      await insertEntry(location)
+    }
+  };
+
+  const dismissLocation = () => {
+    setSidebarIsOpen(false);
+    setLocation(null);
+  }
+
   return (
     <>
       <CssBaseline />
@@ -68,7 +79,7 @@ export const CitiesPeekContainer = () => {
             </Typography>
           </Toolbar>
         </AppBar>
-        <SideDrawer openSidebar={openSidebar} handleEntries={handleEntries}/>
+        <SideDrawer openSidebar={openSidebar} handleEntries={handleEntries} />
         <div className={c.content}>
           <Switch>
             <Route exact path="/location">
@@ -78,7 +89,9 @@ export const CitiesPeekContainer = () => {
                 location={location}
                 hideSidebar={hideSidebar}
                 loading={loading}
-                handleLocationById={handleLocationById}/>
+                handleLocationById={handleLocationById}
+                saveLocation={saveLocation}
+                dismissLocation={dismissLocation} />
             </Route>
             <Route exact path="/location/:id">
               <LocationView
@@ -86,11 +99,14 @@ export const CitiesPeekContainer = () => {
                 open={sidebarIsOpen}
                 location={location}
                 hideSidebar={hideSidebar}
-                loading={loading} 
-                handleLocationById={handleLocationById}/>
+                loading={loading}
+                handleLocationById={handleLocationById}
+                // TODO: PATCH for handle updating location
+                saveLocation={saveLocation}
+                dismissLocation={dismissLocation} />
             </Route>
             <Route exact path="/entries">
-              <Entries entries={entries}/>
+              <Entries entries={entries} />
             </Route>
             <Route exact path="/">
               <Redirect to="/location" />

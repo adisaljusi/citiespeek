@@ -1,6 +1,3 @@
-import { Button } from '@material-ui/core';
-import CloseIcon from '@material-ui/icons/Close';
-import SaveIcon from '@material-ui/icons/Save';
 import React from 'react';
 import { weatherIconMap } from '../helpers/helpers';
 import { Observation, WeatherType } from '../models/model';
@@ -23,20 +20,6 @@ export const Weather: React.FC<Props> = ({ observation }) => {
           <h2>{observation.temperature}°</h2>
         </div>
         <h4 className={c.skyDescription}>{observation.skyDescription}</h4>
-      </div>
-      <div className={c.buttons}>
-        <Button
-          variant="outlined"
-          className={c.dismissButton}
-          startIcon={<CloseIcon />}>
-          Dismiss
-      </Button>
-        <Button
-          variant="contained"
-          color="primary"
-          startIcon={<SaveIcon />}>
-          Save
-      </Button>
       </div>
     </>
   )

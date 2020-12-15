@@ -12,10 +12,11 @@ import { Link } from 'react-router-dom';
 import { sideDrawerStyles } from '../styles/styles';
 
 interface Props {
-  readonly openSidebar: () => void
+  readonly openSidebar: () => void,
+  readonly handleEntries: () => void
 }
 
-export const SideDrawer: React.FC<Props> = ({ openSidebar }) => {
+export const SideDrawer: React.FC<Props> = ({ openSidebar, handleEntries }) => {
   const c = sideDrawerStyles();
 
   return (
@@ -36,7 +37,7 @@ export const SideDrawer: React.FC<Props> = ({ openSidebar }) => {
         </Tooltip>
         <Tooltip title="Saved Locations">
           <Link to="/entries" className={c.link}>
-            <ListItem button onClick={openSidebar}>
+            <ListItem button onClick={handleEntries}>
               <ListItemIcon><ViewListIcon /></ListItemIcon>
             </ListItem>
           </Link>

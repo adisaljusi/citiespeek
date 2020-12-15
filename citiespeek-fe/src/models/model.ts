@@ -62,6 +62,6 @@ export type WeatherIconMap = {
 export interface Entry {
   readonly id: string;
   readonly dateTime: string;
-  readonly latitude: string;
-  readonly longitude: string;
+  readonly latitude: number;
+  readonly longitude: number;
 }

@@ -13,6 +13,7 @@ import { Entries } from '../components/Entries';
 import { LocationView } from '../components/LocationView';
 import { Map } from '../components/Map';
 import { SideDrawer } from '../components/SideDrawer';
+import { getEntryById, getEntries } from '../helpers/cp.fetch';
 import { formatValue } from '../helpers/helpers';
 import { getWeatherObservation } from '../helpers/here.fetch';
 import { searchImage } from '../helpers/unsplash.fetch';
@@ -40,10 +41,21 @@ export const CitiesPeekContainer = () => {
   const handleLocationById = async (id: string) => {
     setLoading(true);
     setSidebarIsOpen(true);
+    const entry = await getEntryById(id);
+
+    if (entry) {
+      await findLocation(new LngLat(entry.longitude, entry.latitude));
+    }
   }
 
   const hideSidebar = () => setSidebarIsOpen(false);
   const openSidebar = () => setSidebarIsOpen(true);
+
+  const handleEntries = async () => {
+    setSidebarIsOpen(true);
+    const entries = await getEntries();
+    setEntries(entries);
+  }
 
   return (
     <>
@@ -56,7 +68,7 @@ export const CitiesPeekContainer = () => {
             </Typography>
           </Toolbar>
         </AppBar>
-        <SideDrawer openSidebar={openSidebar} />
+        <SideDrawer openSidebar={openSidebar} handleEntries={handleEntries}/>
         <div className={c.content}>
           <Switch>
             <Route exact path="/location">
@@ -78,7 +90,7 @@ export const CitiesPeekContainer = () => {
                 handleLocationById={handleLocationById}/>
             </Route>
             <Route exact path="/entries">
-              <Entries entries={entries} />
+              <Entries entries={entries}/>
             </Route>
             <Route exact path="/">
               <Redirect to="/location" />

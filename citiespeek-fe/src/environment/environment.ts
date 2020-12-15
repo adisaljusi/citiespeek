@@ -31,5 +31,5 @@ export const environment: Environment = {
     ACCESS_KEY: process.env.REACT_APP_UNSPLASH_ACCESS_KEY as string
   },
   // TODO: remove for prod
-  CP_API_URL: 'http://localhost:5000'
+  CP_API_URL: 'http://localhost:5000/api'
 };
